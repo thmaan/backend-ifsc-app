@@ -9,12 +9,12 @@ from rest_framework.response import Response
 
 from .models import *
 
-from .serializers import  CategorySerializer, NewsSerializer
+from .serializers import  CategorySerializer, NewsSerializer, TagsSerializer
 
 from .models import News
 from .forms import NewsForm
 from taggit.models import Tag
-
+from django.forms.models import model_to_dict
 
 def home(request):
     news = News.objects.order_by('-published')[:10]
@@ -62,6 +62,13 @@ def getCategoryApi(request):
 	serializer = CategorySerializer(categories, many=True)
 	
 	return Response(serializer.data, status=201)
+
+@api_view(['GET'])
+def getTagsApi(request):
+    news = News.objects.all()
+    serializer = TagsSerializer(news, many=True)
+    
+    return Response(serializer.data, status=201)
 
 @api_view(['GET'])
 def getNewsApi(request):

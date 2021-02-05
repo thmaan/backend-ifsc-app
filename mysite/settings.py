@@ -29,8 +29,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'crispy_forms',
-    'taggit',
     'api',
+    'taggit',
+    'taggit_serializer',
 ]
 
 MIDDLEWARE = [
