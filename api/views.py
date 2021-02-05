@@ -17,7 +17,7 @@ def hello(request):
 	return Response(context,status=201)
 
 @api_view(['GET'])
-def createCategoryApi(request):
+def getCategoryApi(request):
 	categories = Category.objects.all()
 	serializer = CategorySerializer(categories, many=True)
 	

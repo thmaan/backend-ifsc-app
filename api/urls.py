@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = [    
-    path('create-category-api/', views.createCategoryApi, name ='create-category-api'),
+    path('get-category-api/', views.getCategoryApi, name ='get-category-api'),
     
     path('hello/', views.hello, name='hello'),
 ]
