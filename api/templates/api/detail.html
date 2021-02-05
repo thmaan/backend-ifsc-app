@@ -1,0 +1,23 @@
+{% extends 'api/base.html' %}
+{% block content %}
+
+  <div class="row mb-2 posts">
+            <div class="col-md-6">
+                        <div class="cards">
+                            <div class="row no-gutters border rounded  flex-md-row mb-4 shadow-sm h-md-250">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <h3 class="my-1"><a href="{% url 'detail' news.slug %}">{{news.title}}</a></h3>
+                                    <div style="display:flex">
+                                        {% for tag in news.tags.all %}
+                                        <a href="{% url 'tagged' tag.slug %}" class="mr-1 badge badge-info">#{{ tag }}</a>
+                                        {% endfor %}
+                                    </div>
+                                    <p class="mb-auto">{{news.description}}</p>
+                                    <p class="mb-auto text-muted">{{news.published}}</p>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                  </div>
+
+{% endblock %}
