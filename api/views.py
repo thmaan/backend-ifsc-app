@@ -22,7 +22,7 @@ def home(request):
     form = NewsForm(request.POST)
     if form.is_valid():
         new_news = form.save(commit=False)
-        new_news.slug = slugify(new_news.title)
+        new_news.slug = slugify(new_news.id)
         new_news.save()
         form.save_m2m()
         return redirect('/')
