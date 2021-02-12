@@ -14,7 +14,8 @@ class News(models.Model):
 	published = models.DateField(auto_now_add=True)
 	slug = models.SlugField(unique=True, max_length=100)
 	tags = TaggableManager()
-	
+	date_added = models.DateTimeField(auto_now_add=True, null=True)
+
 	def __str__(self):
 		return self.title
 
