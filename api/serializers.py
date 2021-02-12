@@ -10,7 +10,6 @@ class CategorySerializer(serializers.ModelSerializer):
 class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
 
 	tags = TagListSerializerField()
-	
 	class Meta:
 		model = News
 		fields = '__all__'

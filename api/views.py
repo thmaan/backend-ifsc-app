@@ -65,23 +65,24 @@ def getCategoryApi(request):
 
 @api_view(['GET'])
 def getTagsApi(request):
-    news = News.objects.all()
+    news = News.objects.order_by('-published').distinct()
     serializer = TagsSerializer(news, many=True)
-    
+
     return Response(serializer.data, status=201)
 
 @api_view(['GET'])
 def getNewsApi(request):
     news = News.objects.all()
+
     serializer = NewsSerializer(news, many=True)
     
     return Response(serializer.data, status=201)
 
 @api_view(['POST'])
 def getSpecificNewsApi(request):
-    data = request.data['tag']
+    data = request.data['tags']
     tag = get_object_or_404(Tag, slug=data)
     news = News.objects.filter(tags=tag)
     serializer = NewsSerializer(news, many=True)
 
-    return Response(serializer.data,status=201)
+    return Response(serializer.data, status=201)
