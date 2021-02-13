@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'api',
     'taggit',
     'taggit_serializer',
+    'accounts'
 ]
 
 MIDDLEWARE = [
