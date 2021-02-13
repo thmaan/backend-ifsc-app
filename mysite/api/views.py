@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.defaultfilters import slugify
+from django.contrib.auth.decorators import login_required
 
 from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated  
 from rest_framework.decorators import authentication_classes,permission_classes,api_view
+
 from rest_framework.decorators import parser_classes
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
@@ -17,9 +19,7 @@ from .forms import NewsForm
 from taggit.models import Tag
 from django.forms.models import model_to_dict
 
-@api_view(['GET'])
-@authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+@login_required(login_url='login')
 def home(request):
     news = News.objects.order_by('-published')[:10]
     common_tags = News.tags.most_common()[:4]
@@ -36,18 +36,14 @@ def home(request):
         'form':form,
     }
     return render(request, 'api/home.html', context)
-@api_view(['GET'])
-@authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+@login_required(login_url='login')
 def detail(request, slug):
     news = get_object_or_404(News, slug=slug)
     context = {
         'news':news,
     }
     return render(request, 'api/detail.html', context)
-@api_view(['GET'])
-@authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+@login_required(login_url='login')
 def tagged(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     # Filter news by tag name  
@@ -58,9 +54,7 @@ def tagged(request, slug):
     }
     return render(request, 'api/tag.html', context)
     
-@api_view(['GET'])
-@authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+@login_required(login_url='login')
 def hello(request):
 	context= 'ola amigo'
 
