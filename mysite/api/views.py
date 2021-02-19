@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 from .models import *
 
-from .serializers import  CategorySerializer, NewsSerializer, TagsSerializer
+from .serializers import  CategorySerializer, NewsSerializer, TagsSerializer, UserSerializer
 
 from .models import News
 from .forms import NewsForm
@@ -98,3 +98,15 @@ def getSpecificNewsApi(request):
     serializer = NewsSerializer(news, many=True)
 
     return Response(serializer.data, status=201)
+    
+@api_view(['POST'])
+def createUserApi(request):
+    data = JSONParser().parse(request)
+    serializer = UserSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        content = {'message': 'new User OK!'}
+        return Response(content, status=201)
+    else:
+        return Response(status=500)
+    return Response(serializer.errors, status=400)

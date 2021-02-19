@@ -12,4 +12,5 @@ urlpatterns = [
     path('get-news-api/', views.getNewsApi, name ='get-news-api'),
  	path('get-specific-news-api/', views.getSpecificNewsApi, name ='get-specific-news-api'),
     path('hello/', views.hello, name='hello'),
+    path('create-user-api/', views.createUserApi, name='create-user-api'), 
 ]
