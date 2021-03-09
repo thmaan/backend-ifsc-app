@@ -5,20 +5,24 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" name="title" placeholder="Add title">
+                    <label>Título</label>
+                    <input type="text" class="form-control" name="title" placeholder="Escreva o título">
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea type="text" class="form-control" name="description" placeholder="Add description"></textarea>
+                    <label>Introdução</label>
+                    <input type="text" class="form-control" name="introduction" placeholder="Escreva a Introdução (Visualizada no App)  ">
                 </div>
                 <div class="form-group">
-                    <label>Tags(Each word will be a tag)</label>
+                    <label>Descrição</label>
+                    <textarea type="text" class="form-control" name="description" placeholder="Escreva a  descrição"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Tags(Utilize ',' para separar as Tags)</label>
                     <input type="text" data-role="tagsinput" class="form-control" name="tags">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            <p>Common Tags: 
+            <p>Tags mais comuns: 
             {% for tags in common_tags %}
                 <a href="{% url 'tagged' tags.slug %}" class="badge badge-success">{{tags}}</a>
             {% endfor %}

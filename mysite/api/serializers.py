@@ -1,12 +1,7 @@
 from rest_framework import serializers
-from .models import Category, News
+from .models import News
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 from django.contrib.auth import get_user_model
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = '__all__'
 
 class NewsSerializer(TaggitSerializer, serializers.ModelSerializer):
 

@@ -127,3 +127,6 @@ REST_FRAMEWORK = {
     ],
 }
 SECURE_SSL_REDIRECT = False
+
+TAGGIT_TAGS_FROM_STRING = 'mysite.utils.comma_splitter'
+TAGGIT_STRING_FROM_TAGS = 'mysite.utils.comma_joiner'

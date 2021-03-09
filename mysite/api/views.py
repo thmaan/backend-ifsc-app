@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 from .models import *
 
-from .serializers import  CategorySerializer, NewsSerializer, TagsSerializer, UserSerializer
+from .serializers import NewsSerializer, TagsSerializer, UserSerializer
 
 from .models import News
 from .forms import NewsForm
@@ -36,6 +36,7 @@ def home(request):
         'form':form,
     }
     return render(request, 'api/home.html', context)
+    
 @login_required(login_url='login')
 def detail(request, slug):
     news = get_object_or_404(News, slug=slug)
